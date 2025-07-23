@@ -5,6 +5,9 @@ import Jobs from "./Jobs";
 import Sidebar from "../../sidebar/Sidebar";
 import Newsletter from "../../components/Newsletter";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [jobs, setJobs] = useState([]);
@@ -14,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://mern-job-portal-website.vercel.app/all-jobs").then(res => res.json()).then(data => {
+    fetch(`${backendUrl}/all-jobs`).then(res => res.json()).then(data => {
       setJobs(data);
       setIsLoading(false)
     })
